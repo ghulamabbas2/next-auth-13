@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import React, { useState } from "react";
 
 const Register = () => {
@@ -7,8 +8,20 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const { data } = await axios.post("/api/register", {
+        name,
+        email,
+        password,
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -22,7 +35,7 @@ const Register = () => {
             <h1 className="mb-4">Register</h1>
 
             <div className="form-outline mb-4">
-              <label className="form-label" for="name_field">
+              <label className="form-label" htmlFor="name_field">
                 Name
               </label>
               <input
@@ -35,7 +48,7 @@ const Register = () => {
             </div>
 
             <div className="form-outline mb-4">
-              <label className="form-label" for="email_field">
+              <label className="form-label" htmlFor="email_field">
                 Email address
               </label>
               <input
@@ -48,7 +61,7 @@ const Register = () => {
             </div>
 
             <div className="form-outline mb-4">
-              <label className="form-label" for="password_field">
+              <label className="form-label" htmlFor="password_field">
                 Password
               </label>
               <input

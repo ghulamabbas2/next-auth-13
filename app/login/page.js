@@ -3,12 +3,26 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
+import { signIn } from "next-auth/react";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const data = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -21,7 +35,7 @@ const Login = () => {
           >
             <h1 className="mb-4">Login</h1>
             <div className="form-outline mb-4">
-              <label className="form-label" for="email_field">
+              <label className="form-label" htmlFor="email_field">
                 Email address
               </label>
               <input
@@ -34,7 +48,7 @@ const Login = () => {
             </div>
 
             <div className="form-outline mb-4">
-              <label className="form-label" for="password_field">
+              <label className="form-label" htmlFor="password_field">
                 Password
               </label>
               <input
