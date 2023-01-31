@@ -71,6 +71,22 @@ const Login = () => {
               <p>
                 Not a member? <Link href="/register">Register</Link>
               </p>
+              <p>Or sign up with</p>
+              <button
+                type="button"
+                className="btn btn-link btn-floating-mx-1"
+                onClick={() => signIn("google")}
+              >
+                <i className="fab fa-google"></i>
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-link btn-floating-mx-1"
+                onClick={() => signIn("github")}
+              >
+                <i className="fab fa-github"></i>
+              </button>
             </div>
           </form>
         </div>

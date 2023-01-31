@@ -6,6 +6,8 @@ import { useSession, signOut } from "next-auth/react";
 const Header = () => {
   const { data } = useSession();
 
+  console.log(data);
+
   return (
     <nav className="navbar navbar-light bg-light row justify-content-center sticky-top">
       <div className="container">
@@ -19,6 +21,12 @@ const Header = () => {
           {data?.user ? (
             <>
               <span style={{ marginRight: "15px" }}>
+                <img
+                  src={data?.user?.image}
+                  height="25"
+                  width="25"
+                  alt="user image"
+                />
                 Hi, {data?.user?.name}
               </span>
 
